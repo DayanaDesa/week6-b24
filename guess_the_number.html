@@ -8,9 +8,13 @@
 	<div class="container">
 		<h1>Guess the number!</h1>
 		<h3>Enter the number (Between 1-100)</h3>
-		<input type="number" id="user_guess" name="number_guess">
-	<button onclick="buttonClicked()" id="primary">Click me!</button>
-	<p><strong>You have 5 guesses</strong></p>
+		<p><strong>You have 5 guesses</strong></p>
+		<form>
+		<input type="number" id="user_guess" name="number_guess" placeholder="Enter your guess" required></form>
+	<button onclick="buttonClicked()" id="primary">Click Me !</button>
+	<button onclick="reset()" id="primary">Play Again !</button>
+	<br>
+	<p id="message"></p>
 	</div>
 
 <script type="text/javascript">
@@ -25,25 +29,25 @@ function buttonClicked(){
 
 		if (number < rdmNum){
 			if(chances == 0){
-				alert ("Game Over! The number is " + rdmNum + ". Click 'OK' to restart the game.");
-				reset();
+				document.getElementById("message").innerHTML = "Game Over! The number is " + rdmNum + ". Click 'Play Again !' to restart the game.";
+				
 			}
 			else {
-				alert("Your guess is too low. Try again. " + chances + " guesses left.");
+				document.getElementById("message").innerHTML = "Your guess is too low. Try again. " + chances + " guesses left.";
 			}
 		}
 		else if (number > rdmNum){
 			if (chances == 0){
-				alert ("Game Over! The number is " + rdmNum + ". Click 'OK to restart the game.");
-				reset();
+				document.getElementById("message").innerHTML = "Game Over! The number is " + rdmNum + ". Click 'OK to restart the game.";
+				
 			}
 			else{
-				alert ("Your guess is too high. Try again. " + chances + " guesses left.")
+				document.getElementById("message").innerHTML ="Your guess is too high. Try again. " + chances + " guesses left."
 			}
 		}
 		else {
-			alert("You guessed right! Congratulations! Click 'OK' to restart the game");
-			reset();
+			document.getElementById("message").innerHTML ="You guessed right! Congratulations! Click 'OK' to restart the game";
+		
 		}
 		document.getElementById("user_guess").value = "";
 
@@ -54,7 +58,7 @@ function buttonClicked(){
 
 		guesses = 5;
 		rdmNum = Math.ceil(Math.random()*100);
-        alert("A new number is chosen, good luck!");
+        document.getElementById("message").innerHTML ="A new number is chosen, good luck!";
 		document.getElementById("user_guess").value = "";
 		
 	}
